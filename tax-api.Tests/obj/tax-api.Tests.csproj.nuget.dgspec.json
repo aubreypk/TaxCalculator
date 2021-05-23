@@ -1,0 +1,153 @@
+{
+  "format": 1,
+  "restore": {
+    "/Volumes/YoungDrive/My Files/Dev/Assignments/TaxCalculator/tax-api.Tests/tax-api.Tests.csproj": {}
+  },
+  "projects": {
+    "/Volumes/YoungDrive/My Files/Dev/Assignments/TaxCalculator/tax-api.Tests/tax-api.Tests.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Volumes/YoungDrive/My Files/Dev/Assignments/TaxCalculator/tax-api.Tests/tax-api.Tests.csproj",
+        "projectName": "tax-api.Tests",
+        "projectPath": "/Volumes/YoungDrive/My Files/Dev/Assignments/TaxCalculator/tax-api.Tests/tax-api.Tests.csproj",
+        "packagesPath": "/Users/aubreykhoza/.nuget/packages/",
+        "outputPath": "/Volumes/YoungDrive/My Files/Dev/Assignments/TaxCalculator/tax-api.Tests/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/aubreykhoza/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "/Volumes/YoungDrive/My Files/Dev/Assignments/TaxCalculator/tax-api/tax-api.csproj": {
+                "projectPath": "/Volumes/YoungDrive/My Files/Dev/Assignments/TaxCalculator/tax-api/tax-api.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.AspNetCore.Mvc.Testing": {
+              "target": "Package",
+              "version": "[3.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[5.0.6, )"
+            },
+            "Microsoft.NET.Test.Sdk": {
+              "target": "Package",
+              "version": "[16.5.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[1.2.0, )"
+            },
+            "xunit": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
+            "xunit.runner.visualstudio": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.409/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Volumes/YoungDrive/My Files/Dev/Assignments/TaxCalculator/tax-api/tax-api.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Volumes/YoungDrive/My Files/Dev/Assignments/TaxCalculator/tax-api/tax-api.csproj",
+        "projectName": "tax-api",
+        "projectPath": "/Volumes/YoungDrive/My Files/Dev/Assignments/TaxCalculator/tax-api/tax-api.csproj",
+        "packagesPath": "/Users/aubreykhoza/.nuget/packages/",
+        "outputPath": "/Volumes/YoungDrive/My Files/Dev/Assignments/TaxCalculator/tax-api/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/Users/aubreykhoza/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore.InMemory": {
+              "target": "Package",
+              "version": "[5.0.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/3.1.409/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
