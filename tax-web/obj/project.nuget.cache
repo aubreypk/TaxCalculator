@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "D41faOIemacRdrHGH50BBYPwSbnIWqdTb6/XsUEc8DUrezdZPfCX/+gDw0rSLtaQxHaDL49F9LQk2SON1ZR1OQ==",
+  "success": true,
+  "projectFilePath": "/Volumes/YoungDrive/My Files/Dev/Assignments/TaxCalculator/tax-web/tax-web.csproj",
+  "expectedPackageFiles": [
+    "/Users/aubreykhoza/.nuget/packages/newtonsoft.json/13.0.1/newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

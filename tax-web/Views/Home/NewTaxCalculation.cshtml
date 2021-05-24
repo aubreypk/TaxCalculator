@@ -1,0 +1,42 @@
+@model TaxCalculation
+@{ Layout = "_Layout"; ViewBag.Title = "Add a Reservation";}
+ 
+<h2>Calculate Tax</h2>
+<form asp-action="NewTaxCalculation" method="post">
+    <div class="form-group">
+        <label for="PostalCode">Postal Code:</label>
+        <input class="form-control" name="PostalCode" required/>
+    </div>
+    <div class="form-group">
+        <label for="Income">Income:</label>
+        <input class="form-control" name="Income" required/>
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Calculate</button>
+    </div>
+</form>
+ 
+@if (Model != null)
+{
+    <h2>Calculated Tax</h2>
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Postal Code</th>
+                <th>Income</th>
+                <th>Tax</th>
+                <th>Calculated Date & Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.PostalCode</td>
+                <td>@Model.Income</td>
+                <td><strong>@Model.Tax</strong></td>
+                <td>@Model.CalculatedDate</td>
+            </tr>
+        </tbody>
+    </table>
+}

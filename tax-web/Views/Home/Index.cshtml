@@ -1,0 +1,34 @@
+﻿@model IEnumerable<TaxCalculation>
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Tax Calculations</h1>
+</div>
+
+<a asp-action="NewTaxCalculation" class="btn btn-sm btn-primary">New Calculation</a>
+ 
+<table class="table table-sm table-striped table-bordered m-2">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Postal Code</th>
+            <th>Income</th>
+            <th>Tax</th>
+            <th>Calculated Date & Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var t in Model)
+        {
+            <tr>
+                <td>@t.Id</td>
+                <td>@t.PostalCode</td>
+                <td>@t.Income</td>
+                <td>@t.Tax</td>
+                <td>@t.CalculatedDate</td>
+            </tr>
+        }
+    </tbody>
+</table>
