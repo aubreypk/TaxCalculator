@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,12 +32,14 @@ namespace tax_api.Controllers
 		[ProducesResponseType(typeof(TaxCalculation), StatusCodes.Status200OK)]
         public async Task<IActionResult> Get()
         {
-            var taxCalculation = await _dbDbContext.TaxCalculations.ToListAsync();
+            var taxCalculations = await _dbDbContext.TaxCalculations.ToListAsync();
 
-            if (taxCalculation == null)
+            if (taxCalculations == null)
                 return NotFound();
 
-            return Ok(taxCalculation);
+            _logger.LogInformation($"Tax calculations returned: {taxCalculations.Count}");
+
+            return Ok(taxCalculations);
         }
 
 		/// <summary>
@@ -53,9 +57,11 @@ namespace tax_api.Controllers
             if (taxCalculation == null)
                 return NotFound();
 
+            _logger.LogInformation($"Tax calculation returned: {taxCalculation.Id}");
+
             return Ok(taxCalculation);
         }
-
+        
 		/// <summary>
         /// POST - Create New tax calculation
         /// </summary>
@@ -65,19 +71,70 @@ namespace tax_api.Controllers
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
-        //public async Task<ActionResult<TaxCalculation>> Create([FromBody] TaxCalculation taxCalculation)
 		public async Task<ActionResult<TaxCalculation>> Create([FromBody] TaxCalculation taxCalculation)
         {
 			// Required fields
             if (string.IsNullOrEmpty(taxCalculation.PostalCode))
                 return BadRequest();
 
+            // Check  postal code 
+            var type = new TaxCalculationTypesController().Get().Where(a => a.PostalCode == taxCalculation.PostalCode).FirstOrDefault();
+            if(type == null)
+                return BadRequest();
+
+            // calculated values
+            taxCalculation.Tax = CalculateTax(type, taxCalculation.Income);
 			taxCalculation.CalculationDate = DateTime.Now;
 			// touch wood
             _dbDbContext.TaxCalculations.Add(taxCalculation);
             await _dbDbContext.SaveChangesAsync();
 
+            _logger.LogInformation($"Tax calculations created: {taxCalculation.Id}");
+
             return CreatedAtAction(nameof(Get), new {id = taxCalculation.Id}, taxCalculation);
+        }
+
+        /// <summary>
+        /// Calculate tax
+        /// </summary>
+        /// <param name="TaxCalculation"></param>
+        /// <returns></returns>
+		private double CalculateTax(TaxCalculationType taxCalculationType, double income)
+        {
+            // TODO: Need to store this in config or DB
+            double flatRate = 17.5;
+            double flatValue = 10000;
+            double flatValuerate = 5;
+            double flatValueRateThreshhold = 200000;
+
+            // tax init to 0 needed, for progressive nifty loop :-)
+			double tax = 0.0;
+            
+            //Strings :-(
+            switch (taxCalculationType.Type)
+            {
+                case "Flat Rate":
+                    tax = income * (flatRate / 100);
+                break;
+                case "Flat Value":
+                    if(income < flatValueRateThreshhold)
+                        tax = income * (flatValuerate / 100);
+                    else
+                        tax = flatValue;
+                break;
+                case "Progressive":
+                    // get progressive tax rates in income range
+                    var rates = new TaxCalculationRatesController().Get().Where(t => income >= t.MinIncome);
+                    foreach(var rate in rates)
+                    {
+                        // take the max if income higher for rate OR only take the remainder portion if less than max :D
+                        double applicableIncome = income > rate.MaxIncome ? rate.MaxIncome : income - rate.MinIncome;
+                        tax += applicableIncome * rate.Rate / 100;
+                    }
+                break;
+            }
+
+            return tax;
         }
 	}
 }
