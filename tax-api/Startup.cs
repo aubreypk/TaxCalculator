@@ -34,9 +34,11 @@ namespace tax_api
                     options.JsonSerializerOptions.IgnoreNullValues = true;
                     options.JsonSerializerOptions.WriteIndented = true;
                 });
-
-            // Add db context: 
-            // TODO:  Connection string to database provider, and use ServiceLifetime.Scoped
+            
+            // SQLServer DB Setting
+            /*services.AddDbContext<TaxCalculationDbContext>(options => 
+                options.UseSqlServer (Configuration.GetConnectionString("DefaultConnection")));*/
+            // InMemory DB Setting
             services.AddDbContext<TaxCalculationDbContext>(builder => 
                 builder.UseInMemoryDatabase("Tax"),
                 ServiceLifetime.Singleton);
