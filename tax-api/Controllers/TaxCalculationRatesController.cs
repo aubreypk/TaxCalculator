@@ -17,11 +17,16 @@ namespace tax_api.Controllers
 		{
 		}
 
+		/// <summary>
+        /// GET All Tax Calculation Rates for progressive tax
+        /// </summary>
+        /// <param></param>
+        /// <returns></returns>
 		[HttpGet]
 		[ProducesResponseType(typeof(TaxCalculation), StatusCodes.Status200OK)]
 		public List<TaxCalculationRate> Get()
 		{
-			//TODO: store in DB and manage through admin page
+			//TODO: store in DB and manage through admin page - SEE TaxCalculationController FOR DB FUNCTIONALITY
 			// can extend this to cater for other tax types?
             var taxCalculationRates = new List<TaxCalculationRate>()
             {

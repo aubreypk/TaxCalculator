@@ -101,7 +101,7 @@ namespace tax_api.Controllers
         /// <returns></returns>
 		private double CalculateTax(TaxCalculationType taxCalculationType, double income)
         {
-            // TODO: Need to store this in config or DB
+            // TODO: Need to store this in config or DB, key-value settings
             double flatRate = 17.5;
             double flatValue = 10000;
             double flatValuerate = 5;

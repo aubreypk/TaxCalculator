@@ -17,11 +17,16 @@ namespace tax_api.Controllers
 		{
 		}
 
+		/// <summary>
+        /// GET All Tax Calculation Types liked to postal codes
+        /// </summary>
+        /// <param></param>
+        /// <returns></returns>
 		[HttpGet]
 		[ProducesResponseType(typeof(TaxCalculation), StatusCodes.Status200OK)]
 		public List<TaxCalculationType> Get()
 		{
-			//TODO: store in DB and manage through admin page - Id, PostalCode, *CalculationType
+			//TODO: store in DB and manage through admin page - SEE TaxCalculationController FOR DB FUNCTIONALITY
             var taxCalculationTypes = new List<TaxCalculationType>()
             {
                 new TaxCalculationType(){ Id = 1, PostalCode="7441", Type="Progressive"},
